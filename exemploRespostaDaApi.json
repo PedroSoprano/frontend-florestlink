@@ -1,0 +1,40 @@
+[
+    {
+        "id": 1,
+        "name": "Sensor 01",
+        "type": "Sensor modulo 2",
+        "latitude": "145252",
+        "longitude": "1452525",
+        "createdAt": "2023-09-29T01:13:59.643Z",
+        "updatedAt": "2023-09-29T01:13:59.643Z",
+        "measures": [
+            {
+                "id": 8,
+                "temperature": "47",
+                "humidity": "78",
+                "luminosity": "25",
+                "createdAt": "2023-09-29T11:16:01.796Z",
+                "sensorId": 1
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Sensor 02",
+        "type": "Sensor modulo 3",
+        "latitude": "145252",
+        "longitude": "1452525",
+        "createdAt": "2023-09-29T11:16:13.466Z",
+        "updatedAt": "2023-09-29T11:16:13.466Z",
+        "measures": [
+            {
+                "id": 9,
+                "temperature": "90",
+                "humidity": "39",
+                "luminosity": "113",
+                "createdAt": "2023-09-29T11:18:57.065Z",
+                "sensorId": 2
+            }
+        ]
+    }
+]
