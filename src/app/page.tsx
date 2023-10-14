@@ -12,14 +12,14 @@ import 'leaflet/dist/leaflet.css'
 import { CardSensor } from './components/cardSensor';
 import "./styles.css"
 import { getSensor } from './service/sensor/index.sensor';
-import { Sensor } from './models/sensor.model';
 import io from "socket.io-client"
+import { mockData } from './exemploRespostaDaApi';
 
 export default function Home() {
-   
-  const [row, setRow] = useState<Sensor[]>([]) 
- const socket = io.connect("http://localhost:2026")
-   
+
+  const [row, setRow] = useState<Sensor[]>([])
+  const socket = io.connect("http://localhost:2026")
+
 
   useEffect(() => {
     socket.on("onMessage", (data: any) => {
@@ -28,12 +28,14 @@ export default function Home() {
     )
   }, [socket])
 
-   useEffect(() => {
+  useEffect(() => {
     getSensor().then((res) => {
       setRow(res.data)
     }
     )
-    
+
+    setRow(mockData)
+
   }, [])
 
   const theme = (useColors("dark"))
@@ -73,7 +75,7 @@ export default function Home() {
           },
         }}>
           {row.map((item, index) => (
-            <CardSensor item={item} index={index + 1} temp={item.measures[0]?.temperature} lumi={item.measures[0]?.luminosity} gas={item.measures[0]?.gasLevel}  key={index} />
+            <CardSensor item={item} index={index + 1} temp={item.measures[0]?.temperature} lumi={item.measures[0]?.luminosity} gas={item.measures[0]?.gasLevel} key={index} historic={item.measures} />
           ))}
         </Paper>
         <Box sx={{ width: "73vw", height: "77vh", backgroundColor: "gray" }}>

@@ -13,7 +13,7 @@ Sistema de monitoramento de sensores
 ## ⚙ Configuração
 
 Para conseguir rodar o Front-end, você precisa ter instalado o Node.js e o YARN.
-Após isso, clone o repositório e entre na pasta `./MONITORING-FRONT` e execute o seguinte comando para instalar as dependências do projeto:
+Após isso, clone o repositório e entre na pasta `./frontend-florestlink` e execute o seguinte comando para instalar as dependências do projeto:
 
 ```bash
 $ yarn

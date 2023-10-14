@@ -3,11 +3,21 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import ThermostatIcon from '@mui/icons-material/Thermostat';
 import Co2Icon from '@mui/icons-material/Co2';
 import { useColors } from "../styles";
+import ModalHistoric from "./modalHistoric";
 
-export const CardSensor = ({ item, index , temp,lumi, gas}: any) => {
+interface IProps {
+    item: Sensor,
+    index?: number,
+    temp: string,
+    lumi?: string,
+    gas?: string,
+    historic: Measure[]
+}
 
+export const CardSensor = ({ item, index, temp, lumi, gas, historic }: IProps) => {
+    console.log(historic)
     const theme = useColors("dark")
-    console.log({temp,lumi, gas})
+    console.log({ temp, lumi, gas })
     const selectCardColor = (temp: string) => {
         const tempNumber = Number(temp)
         console.log(tempNumber)
@@ -41,7 +51,7 @@ export const CardSensor = ({ item, index , temp,lumi, gas}: any) => {
                 transition: "0.3s ease-in-out"
             },
         }}>
-            <Box marginBottom={"10px"}><h2>Sensor {index}</h2></Box>
+            <Box sx={{ marginBottom: "10px", display: "flex", alignItems: "center", justifyContent: "space-between" }}><h2>Sensor {index}</h2> <ModalHistoric historic={historic} item={item} /></Box>
             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }} >
                 <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-around", width: "150px" }}><ThermostatIcon /> <p>Temperatura:</p></Box> <p>{temp}º</p>
             </Box>
