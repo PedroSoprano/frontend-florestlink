@@ -19,7 +19,7 @@ export default function Home() {
 
   const [row, setRow] = useState<Sensor[]>([])
   const socket = io.connect("http://localhost:2026")
-
+  const [acc, setAcc] = useState(0)
 
   useEffect(() => {
     socket.on("onMessage", (data: any) => {
@@ -34,9 +34,7 @@ export default function Home() {
     }
     )
 
-    setRow(mockData)
-
-  }, [])
+  }, [, acc])
 
   const theme = (useColors("dark"))
 
@@ -49,7 +47,7 @@ export default function Home() {
     <Box component={"main"} sx={{ backgroundColor: theme.background, padding: "50px", height: "calc(100vh - 100px)" }}>
       <Paper component={"menu"} elevation={5} sx={{ backgroundColor: theme.secondary, color: theme.text, display: 'flex', alignItems: "center", justifyContent: "space-between", padding: "20px 30px", height: "50px" }}>
         <h1>Monitoring sensors</h1>
-        <ModalRegisterSensor />
+        <ModalRegisterSensor  setAcc={setAcc} acc= {acc}/>
       </Paper>
 
       <Box sx={{ display: "flex", alignItems: "center", gap: 5, marginTop: "40px", }}>

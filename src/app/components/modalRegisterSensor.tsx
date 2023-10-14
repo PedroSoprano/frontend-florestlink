@@ -4,22 +4,23 @@ import { useState } from "react";
 import * as Yup from 'yup';
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { createSensor } from "../service/sensor/index.sensor";
 
 const schema = Yup.object().shape({
-    nome: Yup.string().required('O nome é obrigatório'),
-    tipo: Yup.string().required('A tipo é obrigatório'),
+    name: Yup.string().required('O nome é obrigatório'),
+    type: Yup.string().required('A tipo é obrigatório'),
     latitude: Yup.string().required('A latitude é obrigatória'),
     longitude: Yup.string().required('A longitude é obrigatória'),
 });
 
 interface IDataForm {
-    nome: string,
-    tipo: string,
+    name: string,
+    type: string,
     latitude: string,
     longitude: string
 }
 
-function ModalRegisterSensor() {
+function ModalRegisterSensor({setAcc,acc} : any ) {
     const [open, setOpen] = useState(false);
 
     const { register, handleSubmit, reset, setValue, formState: { errors }, watch, getValues } = useForm({
@@ -36,7 +37,11 @@ function ModalRegisterSensor() {
     };
 
     const onSubmit = (data: IDataForm) => {
-        console.log(data)
+        createSensor(data).then((res) => {
+            handleClose();
+            setAcc(acc + 1)
+        }
+        )
     }
 
     return (
@@ -55,17 +60,17 @@ function ModalRegisterSensor() {
                     <Box component={"form"} onSubmit={handleSubmit(onSubmit)} sx={{ gap: "10px", display: "flex", flexDirection: "column", marginTop: "20px" }}>
 
                         <TextField
-                            label={errors.nome?.message ?? "Nome do sensor"}
-                            {...register("nome")}
-                            error={!!errors.nome?.message}
+                            label={errors.name?.message ?? "Nome do sensor"}
+                            {...register("name")}
+                            error={!!errors.name?.message}
                             variant="filled"
                             {...register}
                         //sx={errors.nome?.message ? inputError : input}
                         />
                         <TextField
-                            label={errors.tipo?.message ?? "Tipo"}
-                            {...register("tipo")}
-                            error={!!errors.tipo?.message}
+                            label={errors.type?.message ?? "tipo"}
+                            {...register("type")}
+                            error={!!errors.type?.message}
                             variant="filled"
                             {...register}
                         //sx={errors.nome?.message ? inputError : input}

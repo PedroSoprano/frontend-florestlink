@@ -33,7 +33,7 @@ function ModalHistoric({ historic, item }: IProps) {
                 open={open}
                 onClose={handleClose}
             >
-                <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 500, height: 400, bgcolor: "#FFF", color: theme.text, boxShadow: 24, p: 4 }}>
+                <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 500, height: 400, bgcolor: "#FFF", boxShadow: 24, p: 4 }}>
                     <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                         <Typography variant="h6" component="h2" color={"black"}>
                             Histórico do sensor: {item.name}
