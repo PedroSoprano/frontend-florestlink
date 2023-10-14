@@ -57,5 +57,5 @@ export const ChartHistoric = ({ data }: IProps) => {
         }
     }
 
-    return <Chart options={chartData} series={chartData.series} type="line" height={"350px"} width={"100%"} />
+    return <Chart options={chartData} series={chartData.series} type="line" height={"300px"} width={"100%"} />
 }
