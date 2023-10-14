@@ -3,7 +3,8 @@ import { Box, Button, Modal, Typography } from "@mui/material";
 import { useState } from "react";
 import TimelineIcon from '@mui/icons-material/Timeline';
 import { ChartHistoric } from "./graphHistoric";
-
+import { useColors } from "../styles";
+import CloseIcon from '@mui/icons-material/Close';
 interface IProps {
     historic: Measure[],
     item: Sensor
@@ -19,6 +20,10 @@ function ModalHistoric({ historic, item }: IProps) {
         setOpen(false);
     };
 
+    const theme = useColors("dark")
+
+
+
     return (
         <div>
             <Button variant="contained" color="primary" onClick={handleOpen}>
@@ -28,10 +33,13 @@ function ModalHistoric({ historic, item }: IProps) {
                 open={open}
                 onClose={handleClose}
             >
-                <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 500, height: 400, bgcolor: 'background.paper', boxShadow: 24, p: 4 }}>
-                    <Typography variant="h6" component="h2">
-                        Histórico do sensor: {item.name}
-                    </Typography>
+                <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 500, height: 400, bgcolor: theme.background, boxShadow: 24, p: 4 }}>
+                    <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                        <Typography variant="h6" component="h2">
+                            Histórico do sensor: {item.name}
+                        </Typography>
+                        <Button onClick={handleClose} sx={{ marginBottom: "10px" }}><CloseIcon htmlColor="#FFF" /></Button>
+                    </Box>
                     <Typography sx={{ mt: 2, padding: "10px" }}>
                         <ChartHistoric data={historic} />
                     </Typography>
